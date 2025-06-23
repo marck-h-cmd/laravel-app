@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/adminlte/dist/css/adminlte.min.css">
+  @yield('estilos')
 </head>
 <body class="hold-transition sidebar-mini">
     <!-- Site wrapper -->
