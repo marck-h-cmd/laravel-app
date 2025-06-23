@@ -10,14 +10,20 @@ class Cliente extends Model
     /** @use HasFactory<\Database\Factories\ClienteFactory> */
     use HasFactory;
 
-     protected $table = 'clientes';
+    protected $table = 'clientes';
     protected $primaryKey = 'idcliente';
     public $timestamps = false;
-    protected $fillable = ['nomcliente', 'apecliente', 'estado', 'dircliente','idoperador', 'telefono'];
+    protected $fillable = ['nomcliente', 'apecliente', 'estado', 'dircliente', 'idoperador', 'telefono', 'ruc_dni'];
 
     public function operador()
     {
         return $this->hasOne(Operador::class, 'idoperador', 'idoperador');
     }
-   
+
+    public function ventas()
+    {
+        return $this->hasMany('App\CabeceraVenta', 'idcliente', 'idcliente');
+
+    }
+
 }
