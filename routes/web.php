@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UnidadController;
+use App\Http\Controllers\VentaController;
 
 Route::get('/',[UserController::class,'showLogin']);
 
@@ -71,3 +72,9 @@ Route::get('/cancelar',function(){
 
 Route::resource('categoria',CategoriaController::class);
 
+Route::resource('venta', 'VentaController');
+Route::get('EncontrarProducto/{producto_id}', 'VentaController@ProductoCodigo');
+/* datos productos */
+Route::get('EncontrarProducto/{producto_id}', 'VentaController@ProductoCodigo');
+/* datos tipos */
+Route::get('EncontrarTipo/{descripcion}', 'VentaController@PorTipo');

@@ -13,7 +13,7 @@ class Cliente extends Model
     protected $table = 'clientes';
     protected $primaryKey = 'idcliente';
     public $timestamps = false;
-    protected $fillable = ['nomcliente', 'apecliente', 'estado', 'dircliente', 'idoperador', 'telefono', 'ruc_dni'];
+    protected $fillable = ['nomcliente', 'ruc_dni','apecliente', 'estado', 'dircliente', 'idoperador', 'telefono', 'ruc_dni'];
 
     public function operador()
     {
