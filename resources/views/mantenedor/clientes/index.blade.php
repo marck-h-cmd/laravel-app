@@ -51,9 +51,10 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Operador</th>
-            
+
                         <th scope="col">Direccion</th>
                         <th scope="col">Telefono</th>
+                        <th scope="col">RUC / DNI</th>
                         <th scope="col">Estado</th>
                     </tr>
                 </thead>
@@ -69,14 +70,13 @@
                                 <th scope="row">1</th>
                                 <td>{{ $item->nomcliente }}</td>
                                 <td>{{ $item->apecliente }}</td>
-                             
                                 <td>{{ $item->operador->descripcion }}</td>
-        
-                                 <td>{{ $item->dircliente }}</td>
-                                <td>{{ $item->telefono}}</td>
-                                 <td>{{ $item->estado }}</td>
-                                <td><a href="{{ route('clientes.edit', $item->idcliente) }}"
-                                        class="btn btn-info btnsm"><i class="fas fa-edit"></i> Editar</a>
+                                <td>{{ $item->dircliente }}</td>
+                                <td>{{ $item->telefono }}</td>
+                                <td>{{ $item->ruc_dni }}</td>
+                                <td>{{ $item->estado }}</td>
+                                <td><a href="{{ route('clientes.edit', $item->idcliente) }}" class="btn btn-info btnsm"><i
+                                            class="fas fa-edit"></i> Editar</a>
                                     <a href="{{ route('clientes.confirmar', $item->idcliente) }}"
                                         class="btn btn-danger btnsm"><i class="fas fa-trash"></i>
                                         Eliminar</a>

@@ -37,13 +37,13 @@
                             value="{{ $cliente->idcliente }}" value="{{ old('id') }}" disabled />
                     </div>
                 </div>
-                    <div class="form-group">
+                <div class="form-group">
                     <label class="control-label">Nombre:</label>
                     <div class="input-icon">
 
                         <input class="form-control @error('nomcliente') is-invalid @enderror" type="text"
                             placeholder="Ingrese usuario" id="name" name="nomcliente"
-                            value="{{$cliente->nomcliente}}" />
+                            value="{{ $cliente->nomcliente }}" />
                         @error('nomcliente')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -51,13 +51,13 @@
                         @enderror
                     </div>
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label class="control-label">Apellidos:</label>
                     <div class="input-icon">
 
                         <input class="form-control @error('apecliente') is-invalid @enderror" type="text"
                             placeholder="Ingrese apellido" id="name" name="apecliente"
-                           value="{{$cliente->apecliente}}" />
+                            value="{{ $cliente->apecliente }}" />
                         @error('apecliente')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -65,13 +65,13 @@
                         @enderror
                     </div>
                 </div>
-                   <div class="form-group">
+                <div class="form-group">
                     <label class="control-label">Direccion:</label>
                     <div class="input-icon">
 
                         <input class="form-control @error('dircliente') is-invalid @enderror" type="text"
                             placeholder="Ingrese direccion" id="name" name="dircliente"
-                            value="{{$cliente->dircliente}}" />
+                            value="{{ $cliente->dircliente }}" />
                         @error('dircliente')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -79,13 +79,27 @@
                         @enderror
                     </div>
                 </div>
-                               <div class="form-group">
+                 <div class="form-group">
+                    <label class="control-label">RUC / DNI:</label>
+                    <div class="input-icon">
+
+                        <input class="form-control @error('ruc_dni') is-invalid @enderror" type="text"
+                            placeholder="Ingrese ruc o dni" id="ruc_dni" name="ruc_dni"
+                            value="{{ $cliente->ruc_dni }}" />
+                        @error('ruc_dni')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label">Telefono:</label>
                     <div class="input-icon">
 
                         <input class="form-control @error('telefono') is-invalid @enderror" type="text"
                             placeholder="Ingrese telefono" id="name" name="telefono"
-                            value="{{$cliente->telefono}}" />
+                            value="{{ $cliente->telefono }}" />
                         @error('telefono')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -100,7 +114,7 @@
                     <select class="form-control" id="idoperador" name="idoperador">
                         @foreach ($operador as $item)
                             <option value="{{ $item->idoperador }}"
-                                {{ $item->idoperador== $cliente->idoperador ? 'selected' : '' }}>
+                                {{ $item->idoperador == $cliente->idoperador ? 'selected' : '' }}>
                                 {{ $item->descripcion }}
                             </option>
                         @endforeach

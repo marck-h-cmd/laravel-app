@@ -41,7 +41,7 @@
                         @enderror
                     </div>
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label class="control-label">Apellidos:</label>
                     <div class="input-icon">
 
@@ -55,7 +55,7 @@
                         @enderror
                     </div>
                 </div>
-                   <div class="form-group">
+                <div class="form-group">
                     <label class="control-label">Direccion:</label>
                     <div class="input-icon">
 
@@ -69,13 +69,25 @@
                         @enderror
                     </div>
                 </div>
-                               <div class="form-group">
+                 <div class="form-group">
+                    <label class="control-label">RUC / DNI:</label>
+                    <div class="input-icon">
+
+                        <input class="form-control @error('ruc_dni') is-invalid @enderror" type="text"
+                            placeholder="Ingrese ruc / dni" id="ruc_dni" name="ruc_dni" value="{{ old('ruc_dni') }}" />
+                        @error('ruc_dni')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="control-label">Telefono:</label>
                     <div class="input-icon">
 
                         <input class="form-control @error('telefono') is-invalid @enderror" type="text"
-                            placeholder="Ingrese telefono" id="name" name="telefono"
-                            value="{{ old('telefono') }}" />
+                            placeholder="Ingrese telefono" id="name" name="telefono" value="{{ old('telefono') }}" />
                         @error('telefono')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -94,10 +106,10 @@
                     </select>
 
                 </div>
-                
-                 
 
-               
+
+
+
 
 
                 <hr />

@@ -1,6 +1,6 @@
-@extends('layouts.plantilla')
+@extends('layout.plantilla')
 @section('estilos')
-    <link rel="stylesheet" href="/assets/calendario/css/bootstrap-datepicker.standalone.css">
+    <link rel="stylesheet" href="/assets/calendario/dist/css/bootstrap-datepicker.standalone.css">
     <link rel="stylesheet" href="/assets/select2/bootstrap-select.min.css">
 @endsection
 @section('contenido')
@@ -33,9 +33,9 @@
                 <div class="col-md-2">
                     <select class="formcontrol" id="seltipo" name="seltipo" onchange="mostrarTipo()">
                         @foreach ($tipo as $itemtipo)
-                            <option value="{{ $itemtipo['idtipo'] }}" selected>{{ $itemtipo[
-                                'descripcion'
-                            ] }}</option>
+                            <option value="{{ $itemtipo['idtipo'] }}" selected>
+                                {{ $itemtipo['descripcion'] }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -122,7 +122,7 @@
                     <input type="text" class="formcontrol" name="cantidad" id="cantidad">
                 </div>
                 <div class="col-md-3">
-                    <button type="button" id="btnadddet" class="btn btn-success"><i class="fas fashopping-cart"></i>
+                    <button type="button" id="btnadddet" class="btn btn-success"><i class="fas fa-cart-plus"></i>
                         Agregar al carrito</button>
                 </div>
                 <div class="col-md-2">
@@ -169,14 +169,24 @@
                             data-loadingtext="<i class='fa a-spinner fa-spin'></i> Registrando">
                             <i class='fas fa-save'></i> Registrar</button>
 
-                        <a href="{{ URL::to('venta') }}" class='btn btn-danger'><i class='fas faban'></i> Cancelar</a>
+                        <a href="{{ URL::to('venta') }}" class='btn btn-danger'><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</a>
                     </div>
                 </div>
             </div>
         @endsection
         @section('js')
-            <script src="/assets/select2/bootstrap-select.min.js"></script>
             <script src="/assets/calendario/dist/js/bootstrap-datepicker.min.js"></script>
             <script src="/assets/calendario/dist/locales/bootstrap-datepicker.es.min.js"></script>
+            <script src="/assets/select2/bootstrap-select.min.js"></script>
             <script src="/archivos/js/createdoc.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('.form_date').datepicker({
+                        format: 'dd/mm/yyyy',
+                        language: 'es',
+                        todayHighlight: true,
+                        autoclose: true
+                    });
+                });
+            </script>
         @endsection

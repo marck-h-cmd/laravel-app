@@ -17,6 +17,16 @@ $(document).ready(function () {
     $('#seltipo').change(function () {
         mostrarTipo();
     });
+    $('form').submit(function() {
+        $('#total').val(cleanNumber($('#total').val()));
+        $('input[name="pventa[]"]').each(function() {
+            $(this).val(cleanNumber($(this).val()));
+        });
+        $('input[name^="cantidad"]').each(function() {
+        $(this).val(cleanNumber($(this).val()));
+    });
+        return true;
+    });
 });
 function mostrarCliente() {
     datosCliente = document.getElementById('cliente_id').value.split('_');
@@ -27,7 +37,7 @@ function mostrarProducto() {
     producto_id = $("#producto_id").val();
     $.get('/EncontrarProducto/' + producto_id, function (data) {
 
-        $('input[name=producto_id]').val(data[0].producto_id);
+        $('input[name=idproducto]').val(data[0].idproducto);
         $('input[name=unidad]').val(data[0].unidad);
         $('input[name=precio]').val(data[0].precio);
         $('input[name=stock]').val(data[0].stock);
@@ -71,8 +81,7 @@ function agregarDetalle() {
         return false;
     }
     if (Number(cantidad) > Number(stock)) {
-        mostrarMensajeError("No se tiene tal cantidad de producto solo hay "
-            + stock);
+        mostrarMensajeError("No se tiene tal cantidad de producto solo hay " + stock);
         return false;
     }
     pventa = $("#precio").val();
@@ -103,7 +112,7 @@ function agregarDetalle() {
         controlproducto[cont] = cod_producto;
         total = total + subtotal[cont];
 
-        var fila = '<tr class="selected" id="fila' + cont + '"><td style="textalign:center;"><button type="button" class="btn btn-danger btnxs" onclick="eliminardetalle(' + cod_producto + ',' + cont + ');"><i class="fa fatimes" ></i></button></td><td style="textalign:right;"><input type="text" name="cod_producto[]" value="' + cod_producto + '" readonly style="width:50px; textalign:right;"></td><td>' + descripcion + '</td><td><input type="text" name="unidad[]" value="' + unidad + '" style="width: 140px; textalign: left; "></td><td style="textalign: right; "><input type="number" name="cantidad[]" value="' + cantidad + '"style = "width:80px; text-align:right;" readonly ></td ><td style="textalign:right;"><input type="number" name="pventa[]" value="' + pventa + '" style="width:80px; text-align:right;" readonly></td><td style="textalign:right;">' + number_format(subtotal[cont], 2) + '</td></tr > ';
+        var fila = '<tr class="selected" id="fila' + cont + '"><td style="textalign:center;"><button type="button" class="btn btn-danger btnxs" onclick="eliminardetalle(' + cod_producto + ',' + cont + ');"><i class="fa fa-times" aria-hidden="true"></i></button></td><td style="textalign:right;"><input type="text" name="cod_producto[]" value="' + cod_producto + '" readonly style="width:50px; textalign:right;"></td><td>' + descripcion + '</td><td><input type="text" name="unidad[]" value="' + unidad + '" style="width: 140px; textalign: left; "></td><td style="textalign: right; "><input type="number" name="cantidad[]" value="' + cantidad + '"style = "width:80px; text-align:right;" readonly ></td ><td style="textalign:right;"><input type="number" name="pventa[]" value="' + pventa + '" style="width:80px; text-align:right;" readonly></td><td style="textalign:right;">' + number_format(subtotal[cont], 2) + '</td></tr > ';
         $('#detalles').append(fila);
         detalleventa.push({
             codigo: cod_producto,
@@ -150,7 +159,11 @@ function number_format(amount, decimals) {
     var amount_parts = amount.split('.'),
         regexp = /(\d+)(\d{3})/;
     while (regexp.test(amount_parts[0]))
-        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2')
-            ;
+        amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
     return amount_parts.join('.');
+}
+
+
+function cleanNumber(num) {
+    return num.toString().replace(/[^0-9.-]/g, '');
 }

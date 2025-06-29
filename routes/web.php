@@ -72,9 +72,8 @@ Route::get('/cancelar',function(){
 
 Route::resource('categoria',CategoriaController::class);
 
-Route::resource('venta', 'VentaController');
-Route::get('EncontrarProducto/{producto_id}', 'VentaController@ProductoCodigo');
+Route::resource('venta', VentaController::class);
 /* datos productos */
-Route::get('EncontrarProducto/{producto_id}', 'VentaController@ProductoCodigo');
+Route::get('EncontrarProducto/{producto_id}', [VentaController::class,'ProductoCodigo']);
 /* datos tipos */
-Route::get('EncontrarTipo/{descripcion}', 'VentaController@PorTipo');
+Route::get('EncontrarTipo/{descripcion}', [VentaController::class,'PorTipo']);
