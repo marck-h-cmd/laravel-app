@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Unidad;
 use App\Models\Categoria;
-
+use Exception;
 class ProductoController extends Controller
 {
     const PAGINATION = 8;

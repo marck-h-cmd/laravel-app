@@ -35,6 +35,7 @@ class ClienteController extends Controller
             'apecliente' => 'required|max:100',
             'dircliente' => 'required|max:100',
             'telefono' => 'required|max:10',
+            'ruc_dni' => 'required|max:11'
 
         ], [
             'nomcliente.required' => 'Ingrese nombre cliente',
@@ -45,6 +46,8 @@ class ClienteController extends Controller
             'dircliente.max' => 'Maximo 100 de caracteres para la direccion',
             'telefono.required' => 'Ingrese telefono',
             'telefono.max' => 'Maximo 10 de caracteres para el telefono',
+            'ruc_dni.required' => 'Ingrese ruc o dni',
+            'ruc_dni.max' => 'Maximo 11 de caracteres para el ruc o dni',
 
         ]);
 
@@ -54,6 +57,7 @@ class ClienteController extends Controller
         $cli->apecliente = $request->apecliente;
         $cli->dircliente = $request->dircliente;
         $cli->telefono = $request->telefono;
+        $cli->ruc_dni = $request->ruc_dni;
         $cli->estado = '1';
         $cli->save();
         return redirect()->route('clientes.index')->with('datos', 'Registro Nuevo Guardado!');
@@ -68,6 +72,7 @@ class ClienteController extends Controller
             'apecliente' => 'required|max:100',
             'dircliente' => 'required|max:100',
             'telefono' => 'required|max:10',
+            'ruc_dni' => 'required|max:11'
 
         ], [
             'nomcliente.required' => 'Ingrese nombre cliente',
@@ -78,6 +83,8 @@ class ClienteController extends Controller
             'dircliente.max' => 'Maximo 100 de caracteres para la direccion',
             'telefono.required' => 'Ingrese telefono',
             'telefono.max' => 'Maximo 10 de caracteres para el telefono',
+            'ruc_dni.required' => 'Ingrese ruc o dni',
+            'ruc_dni.max' => 'Maximo 11 de caracteres para el ruc o dni',
 
         ]);
         $cli = Cliente::findOrFail($cli_id);
@@ -86,6 +93,7 @@ class ClienteController extends Controller
         $cli->apecliente = $request->apecliente;
         $cli->dircliente = $request->dircliente;
         $cli->telefono = $request->telefono;
+        $cli->ruc_dni = $request->ruc_dni;
         $cli->save();
         return redirect()->route('clientes.index')->with('datos', 'Registro Actualizado!');
     }
