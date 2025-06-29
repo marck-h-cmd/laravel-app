@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Parametro extends Model
 {
     protected $table = 'parametros';
-    protected $primaryKey = 'tipo_id';
+    protected $primaryKey = 'idtipo';
     public $timestamps = false;
     protected $fillable = [
         'numeracion',

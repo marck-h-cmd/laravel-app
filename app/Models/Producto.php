@@ -28,9 +28,11 @@ class Producto extends Model
 
     public static function ActualizarStock($producto_id, $cantidad)
     {
-        return DB::select(
-            DB::raw("UPDATE productos set stock = stock - '" . $cantidad . "' where idproducto='" . $producto_id . "'")
+         return DB::update(
+            'UPDATE productos SET stock = stock - ? WHERE idproducto = ?',
+            [(float)$cantidad, $producto_id]
         );
+       
     }
 
 }
