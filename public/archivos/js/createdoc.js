@@ -48,6 +48,10 @@ function mostrarTipo() {
     $.get('/EncontrarTipo/' + descripcion, function (data) {
 
         $('input[name=nrodoc]').val(data[0].numeracion);
+        if(data[0].idtipo == '1')
+            $('input[name=igv]').val(0);
+        else
+            $('input[name=igv]').val(0.18);
     });
 }
 /* Mostrar Mensajes de Error */

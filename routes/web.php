@@ -12,7 +12,7 @@ use App\Http\Controllers\VentaController;
 Route::get('/',[UserController::class,'showLogin']);
 
 Route::post('/identificacion', [UserController::class,'verificalogin'])->name('identificacion');
-Route::get('/', [HomeController::class,'index'])->name('home');
+Route::get('/home', [HomeController::class,'index'])->name('home');
 // -----------------categorias
 Route::get('/categorias', [CategoriaController::class,'index'])->name('categorias.index');
 Route::post('/categorias', [CategoriaController::class,'store'])->name('categorias.store');

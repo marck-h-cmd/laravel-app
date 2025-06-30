@@ -18,7 +18,9 @@ class VentaController extends Controller
     public function index(Request $request)
     {
         $buscarpor = $request->get('buscarpor');
-        $venta = CabeceraVenta::where('estado', '=', '1')->where('nrodoc', 'like', '%' . $buscarpor . '%')->paginate($this::PAGINATION);
+        $venta = CabeceraVenta::where('estado', '=', '1')->WhereHas('clientes', function ($q) use ($buscarpor) {
+            $q->where('ruc_dni', 'like', '%' . $buscarpor . '%');
+        })->paginate($this::PAGINATION);
         return view('mantenedor.ventas.index', compact('venta', 'buscarpor'));
     }
 
@@ -51,13 +53,15 @@ class VentaController extends Controller
             $nFecha = $arr[2] . '-' . $arr[1] . '-' . $arr[0];
             $venta->fecha_venta = $nFecha;
             if ($request->seltipo == '2') {
+                $venta->subtotal = (float) $total;
+                $venta->igv = 0;
                 $venta->total = (float) $total;
-                $venta->subtotal = '0';
-                $venta->igv = '0';
             } else {
-                $venta->total = '100';
-                $venta->subtotal = '0';
-                $venta->igv = '0';
+                $subtotal = (float) $total / 1.18;
+                $igv = (float) $total - $subtotal;
+                $venta->subtotal = round($subtotal, 2);
+                $venta->igv = round($igv, 2);
+                $venta->total = (float) $total;
             }
             $venta->estado = '1';
             $venta->save();
@@ -65,7 +69,9 @@ class VentaController extends Controller
             $producto_id = $request->cod_producto;
             $cantidad = $request->cantidad;
             $pventa = $request->pventa;
-
+            if (!$producto_id) {
+                return back()->with('error', 'Error al registrar la venta: ');
+            }
             $cont = 0;
             while ($cont < count($producto_id)) {
                 $detalle = new DetalleVenta();

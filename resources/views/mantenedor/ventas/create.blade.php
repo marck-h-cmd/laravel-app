@@ -152,6 +152,13 @@
                 <div class="row">
                     <div class="col-md-8">
                     </div>
+                      <div class="col-md-2">
+                        <label for="">IGV : </label>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control textright" name="igv" id="igv"
+                            readonly="readonly">
+                    </div>
                     <div class="col-md-2">
                         <label for="">Total : </label>
                     </div>
