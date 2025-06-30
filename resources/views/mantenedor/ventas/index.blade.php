@@ -72,6 +72,10 @@
                                 <td>{{ $item->clientes->ruc_dni }}</td>
                                 <td>{{ $item->clientes->nomcliente }}</td>
                                 <td>{{ $item->total }}</td>
+                                <td>
+                                    <a href="{{route('venta.confirmar',$item->idventa)}}" class="btn btn-danger btnsm"><i class="fas fa-trash"></i>
+                                        Eliminar</a>
+                                </td>
                               
 
                             </tr>

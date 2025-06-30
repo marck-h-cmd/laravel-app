@@ -112,8 +112,18 @@ class VentaController extends Controller
 
     public function destroy($id)
     {
-        //
+        $ven = CabeceraVenta::findOrFail($id);
+        $ven->estado = '0';
+        $ven->save();
+        return redirect()->route('venta.index')->with('datos', 'Registro Eliminado...!');
     }
+
+    public function confirmar($id)
+    {
+        $venta = CabeceraVenta::findOrFail($id);
+        return view('mantenedor.ventas.confirmar', compact('venta'));
+    }
+
     /* Para select2 Buscar Productos */
     public function ProductoCodigo($producto_id)
     {

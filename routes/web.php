@@ -73,6 +73,11 @@ Route::get('/cancelar',function(){
 Route::resource('categoria',CategoriaController::class);
 
 Route::resource('venta', VentaController::class);
+Route::get('/venta/{id}/confirmar',[VentaController::class,'confirmar'])->name('venta.confirmar');
+Route::get('/cancelar3',function(){
+    return redirect()->route('venta.index')->with('datos','Accion Terminada...!');
+})->name('venta.cancelar');
+
 /* datos productos */
 Route::get('EncontrarProducto/{producto_id}', [VentaController::class,'ProductoCodigo']);
 /* datos tipos */
